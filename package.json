@@ -1,0 +1,33 @@
+{
+  "name": "foodably_backend",
+  "version": "1.0.0",
+  "description": "The implementation of the backend for Foodably project (CSCI 5709)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.cs.dal.ca:herasimov/group2_implementers_foodably_backend.git"
+  },
+  "keywords": [
+    "foodably",
+    "backend",
+    "express",
+    "food",
+    "recipes"
+  ],
+  "author": "Misha Herasimov, Raviteja Kase, Muppidi Shashank Reddy, Sneha Jayavardhini Doguparthi, Ujwal Vikas Chanda",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "mongoose": "^5.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
