@@ -1,9 +1,7 @@
 const express = require('express');
-const authorize = require('../middlewares/auth');
 const { body, check } = require('express-validator');
 
 const authController = require('../controllers/authController');
-const usersController = require('../controllers/usersController');
 
 const router = express.Router();
 
@@ -28,10 +26,5 @@ router.post(
 
 router.post('/signin', authController.login);
 router.get('/validateEmail/:email', authController.validateEmail);
-
-router.get('/', authorize, usersController.getUsers);
-router.get('/user-profile/:id', usersController.getUser);
-router.put('/update-user/:id', usersController.updateUser);
-router.delete('/delete-user/:id', usersController.deleteUser);
 
 module.exports = router;
