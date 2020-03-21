@@ -6,6 +6,7 @@ const dbConfig = require('./database/db');
 
 const recipeRoutes = require('./routes/recipes.routes');
 const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/auth.routes');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // add your routes here
+app.use('/api', userRoutes);
 app.use('/api', authRoutes);
 app.use(recipeRoutes);
 
