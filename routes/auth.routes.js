@@ -2,6 +2,7 @@ const express = require('express');
 const { body, check } = require('express-validator');
 
 const authController = require('../controllers/authController');
+const usersController = require('../controllers/usersController');
 
 const router = express.Router();
 
@@ -26,13 +27,9 @@ router.post(
 router.post('/signin', authController.login);
 router.get('/validateEmail/:email', authController.validateEmail);
 
-<<<<<<< HEAD
 router.get('/', usersController.getUsers);
 router.get('/user-profile/:id', usersController.getUser);
 router.put('/update-user/:id', usersController.updateUser);
 router.delete('/delete-user/:id', usersController.deleteUser);
 
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> b486cf0462b2a84e111f5c2375329e7874b21795
