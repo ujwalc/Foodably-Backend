@@ -6,7 +6,7 @@ const dbConfig = require('./database/db');
 
 const recipeRoutes = require('./routes/recipes.routes');
 const authRoutes = require('./routes/auth.routes');
-
+const searchRoutes = require('./routes/search.routes');
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(cors());
 
 app.use('/api', authRoutes);
 app.use(recipeRoutes);
+app.use('/search', searchRoutes);
 
 // global error handling login
 app.use((error, req, res, next) => {
@@ -47,3 +48,5 @@ mongoose
     .catch(err => {
         console.log(err);
     });
+
+//delete mongoose.connection.models['User'];
