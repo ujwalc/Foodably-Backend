@@ -13,7 +13,51 @@ exports.getRecipe = (req, res, next) => {
         throw error;
       }
       res.status(200).json({
-        recipe: recipe
+        data: recipe
+      });
+    })
+    .catch(err => {
+      utils.handleError(err, next);
+    });
+};
+
+exports.createRecipe = (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const error = new Error('Validation failed, entered data is incorrect');
+    error.statusCode = 422;
+    throw error;
+  }
+
+  const recipe = new Recipe({
+    title: req.body.title,
+    description: req.body.description,
+    author: { name: req.body.author.name },
+    videoURL: req.body.videoURL,
+    ingredients: req.body.ingredients,
+    category: req.body.category,
+    preparationTime: req.body.preparationTime,
+    cuisine: req.body.cuisine,
+    type: req.body.type,
+    instruction: req.body.instruction
+  });
+
+  recipe
+    .save()
+    // .then(result => {
+    //     return User.findById(req.userId);
+    // })
+    // .then(user => {
+    //     creator = user;
+    //     user.posts.push(post);
+    //     return user.save();
+    // })
+    .then(result => {
+      res.status(201).json({
+        message: 'Recipe created successfully!',
+        data: recipe
+        // creator: { _id: creator._id, name: creator.name }
       });
     })
     .catch(err => {

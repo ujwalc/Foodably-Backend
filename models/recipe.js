@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
+const meanieMongoose = require('meanie-mongoose-to-json');
 const Schema = mongoose.Schema;
+
+const ranking = require('./ranking');
+const ingredient = require('./ingredient');
+const instructionStep = require('./instruction-step');
 
 const recipeSchema = new Schema(
   {
@@ -14,16 +19,31 @@ const recipeSchema = new Schema(
     author: {
       name: String
     },
-    isVeg: Boolean,
-    ingredients: [{ name: String, value: Number, units: String }],
-    likes: Number,
-    rating: { ratingTotal: Number, submissions: Number },
+    videoURL: String,
+    isVeg: {
+      type: Boolean,
+      default: false
+    },
+    ingredients: [ingredient],
+    likes: {
+      type: Number,
+      default: 0
+    },
+    ranking: {
+      type: ranking,
+      default: new Schema()
+    },
     category: String,
-    preparationTime: String,
+    preparationTime: Number,
     cuisine: String,
-    typeOfDish: String
+    /* type of dish */
+    type: String,
+    instruction: [instructionStep]
   },
   { timestamps: true }
 );
+
+// this replaces _id with id and removes _v variable
+recipeSchema.plugin(meanieMongoose);
 
 module.exports = mongoose.model('Recipe', recipeSchema);

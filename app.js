@@ -22,7 +22,7 @@ app.use(cors());
 
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
-app.use(recipeRoutes);
+app.use('/recipe', recipeRoutes);
 
 // global error handling login
 app.use((error, req, res, next) => {

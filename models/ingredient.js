@@ -1,19 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ingredientSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  value: {
-    type: Number,
-    required: true
-  },
-  units: {
-    type: String,
-    required: true
-  }
-});
+/* ingredient step */
 
-module.exports = mongoose.model('Ingredient', ingredientSchema);
+const ingredientSchema = new Schema(
+  {
+    name: String,
+    value: Number,
+    units: String
+  },
+  { _id: false }
+);
+
+module.exports = ingredientSchema;
