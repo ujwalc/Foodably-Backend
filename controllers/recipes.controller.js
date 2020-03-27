@@ -17,7 +17,8 @@ exports.getRecipe = (req, res, next) => {
       });
     })
     .catch(err => {
-      utils.handleError(err, next);
+      utils.handleError(err);
+      next(err);
     });
 };
 
@@ -61,6 +62,7 @@ exports.createRecipe = (req, res, next) => {
       });
     })
     .catch(err => {
-      utils.handleError(err, next);
+      utils.handleError(err);
+      next(err);
     });
 };

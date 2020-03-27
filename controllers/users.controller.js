@@ -8,9 +8,7 @@ exports.getUsers = (req, res, next) => {
       res.status(200).json(users);
     })
     .catch(err => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
+      utils.handleError(err);
       next(err);
     });
 };
@@ -24,7 +22,8 @@ exports.getUser = (req, res, next) => {
       });
     })
     .catch(err => {
-      utils.handleError(err, next);
+      utils.handleError(err);
+      next(err);
     });
 };
 
@@ -36,9 +35,7 @@ exports.updateUser = (req, res, next) => {
       res.status(200).json(updatedUser);
     })
     .catch(err => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
+      utils.handleError(err);
       next(err);
     });
 };
@@ -53,9 +50,7 @@ exports.deleteUser = (req, res, next) => {
       });
     })
     .catch(err => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
+      utils.handleError(err);
       next(err);
     });
 };
