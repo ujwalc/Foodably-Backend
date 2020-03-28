@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const recipeRoutes = require('./routes/recipes');
+const userRoute = require('./routes/userComments');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 
 // add your routes here
 app.use(recipeRoutes);
+app.use('/userComments',userRoute);
 
 // global error handling login
 // app.use((error, req, res, next) => {
