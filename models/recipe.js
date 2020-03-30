@@ -34,6 +34,7 @@ const recipeSchema = new Schema(
       default: new Schema()
     },
     category: String,
+    // In minutes
     preparationTime: Number,
     cuisine: String,
     /* type of dish */
