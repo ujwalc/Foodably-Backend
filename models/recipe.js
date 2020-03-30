@@ -17,9 +17,11 @@ const recipeSchema = new Schema(
       required: true
     },
     author: {
-      name: String
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     },
     videoURL: String,
+    previewURL: String,
     isVeg: {
       type: Boolean,
       default: false
