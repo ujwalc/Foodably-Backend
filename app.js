@@ -8,6 +8,7 @@ const commentRoutes = require('./routes/userComments');
 const recipeRoutes = require('./routes/recipes.routes');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/users.routes');
+const profileRoutes = require('./routes/profile.routes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/userComments', commentRoutes);
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/recipe', recipeRoutes);
+app.use('/profile', profileRoutes);
 
 // global error handling login
 app.use((error, req, res, next) => {
