@@ -6,6 +6,8 @@ const utils = require('../utils/error.handling');
 exports.getRecipe = (req, res, next) => {
   const recipeId = req.params.recipeId;
   Recipe.findById(recipeId)
+    .populate({ path: 'author', select: 'name -_id' })
+    .exec()
     .then(recipe => {
       if (!recipe) {
         const error = new Error('Could not find the recipe.');
@@ -34,8 +36,10 @@ exports.createRecipe = (req, res, next) => {
   const recipe = new Recipe({
     title: req.body.title,
     description: req.body.description,
-    author: { name: req.body.author.name },
+    author: req.body.authorId,
     videoURL: req.body.videoURL,
+    previewURL: req.body.previewURL,
+    isVeg: req.body.isVeg,
     ingredients: req.body.ingredients,
     category: req.body.category,
     preparationTime: req.body.preparationTime,
