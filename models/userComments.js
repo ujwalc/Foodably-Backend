@@ -1,12 +1,14 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
+const meanieMongoose = require('meanie-mongoose-to-json');
+const Schema = mongoose.Schema;
 
-const commentSchema=mongoose.Schema({
-    _id:mongoose.Schema.Types.ObjectId,
+const commentSchema = new Schema({
     comment:String,
     userId:String,
     userName:String,
     recipeId: String,
-    commentDate: Date
-  
-});
-module.exports=mongoose.model("userComment",commentSchema)
+}, { timestamps: true });
+
+commentSchema.plugin(meanieMongoose);
+
+module.exports=mongoose.model("Comment", commentSchema)
