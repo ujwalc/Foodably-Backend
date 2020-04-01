@@ -46,7 +46,7 @@ exports.updateUser = (req, res, next) => {
 
 exports.deleteUser = (req, res, next) => {
     userSchema
-        .deleteOne(req.params.id)
+        .deleteOne({ _id: req.params.id })
         .then(result => {
             console.log(result);
             res.status(200).json({
@@ -177,4 +177,16 @@ exports.NewPassword = (req, res) => {
         });
 
     })
+}
+
+exports.UpdateBio = (req, res) => {
+
+    userSchema
+        .findOneAndUpdate({ _id: req.params.id }, { $set: { bio: req.params.bio } }, { useFindAndModify: false }).then(res1 => {
+            console.log('User successfully updated!');
+            res.status(200).json(res1);
+        }).catch(err => {
+            utils.handleError(err);
+            next(err);
+        });
 }

@@ -11,5 +11,6 @@ router.delete('/delete-user/:id', usersController.deleteUser);
 router.post('/req-reset-password', usersController.ResetPassword);
 router.post('/new-password', usersController.NewPassword);
 router.post('/valid-password-token', usersController.ValidPasswordToken);
+router.put('/updateBio/:id/:bio', usersController.UpdateBio);
 
 module.exports = router;

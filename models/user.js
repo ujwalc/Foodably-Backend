@@ -12,6 +12,9 @@ let userSchema = new Schema({
     },
     password: {
         type: String
+    },
+    bio: {
+        type: String
     }
 }, {
     collection: 'users'
