@@ -12,7 +12,10 @@ let userSchema = new Schema(
       unique: true
     },
     password: {
-      type: String
+        type: String
+    },
+    bio: {
+        type: String
     }
   },
   {
