@@ -4,9 +4,12 @@ const Schema = mongoose.Schema;
 
 /* instruction step */
 
-const instructionStepSchema = new Schema({
+const instructionStepSchema = new Schema(
+  {
     description: String,
     ingredients: [ingredient]
-}, { _id: false });
+  },
+  { _id: false }
+);
 
 module.exports = instructionStepSchema;

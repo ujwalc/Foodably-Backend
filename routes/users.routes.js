@@ -1,21 +1,12 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const uniqueValidator = require('mongoose-unique-validator');
+const express = require('express');
 
-let userSchema = new Schema({
-    name: {
-        type: String
-    },
-    email: {
-        type: String,
-        unique: true
-    },
-    password: {
-        type: String
-    }
-}, {
-    collection: 'users'
-});
+const usersController = require('../controllers/users.controller');
 
-userSchema.plugin(uniqueValidator, { message: 'Email already in use.' });
-module.exports = mongoose.model('User', userSchema);
+const router = express.Router();
+
+router.get('/', usersController.getUsers);
+router.get('/user-profile/:id', usersController.getUser);
+router.put('/update-user/:id', usersController.updateUser);
+router.delete('/delete-user/:id', usersController.deleteUser);
+
+module.exports = router;
