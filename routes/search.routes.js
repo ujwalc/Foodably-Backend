@@ -48,7 +48,7 @@ router.get('/contact/:name/:mail/:body', async(req, res) => {
 router.get('/', async(req, res) => {
     try {
 
-        const search1 = await User.find().limit(10);
+        const search1 = await Recipe.find().limit(10);
         res.json(search1);
 
     } catch (err) {
@@ -60,6 +60,7 @@ router.get('/', async(req, res) => {
 router.get('/author/:searchID', async(req, res) => {
     try {
         const searchID = req.params.searchID
+
         const search1 = await User.find({ _id: searchID }).limit(10);
         res.json(search1);
 
@@ -77,7 +78,7 @@ router.get('/:searchID', async(req, res) => {
         const search2 = await Recipe.find({
             $or: [
                 { title: { $regex: searchID, $options: "i" } },
-                { author: { $regex: searchID, $options: "i" } },
+                { "author.name": { $regex: searchID, $options: "i" } },
                 { type: { $regex: searchID, $options: "i" } },
                 { description: { $regex: searchID, $options: "i" } },
                 { cuisine: { $regex: searchID, $options: "i" } },
