@@ -6,7 +6,11 @@ const dbConfig = require('./database/db');
 
 const recipeRoutes = require('./routes/recipes.routes');
 const authRoutes = require('./routes/auth.routes');
+
+const searchRoutes = require('./routes/search.routes');
+
 const userRoutes = require('./routes/users.routes');
+const profileRoutes = require('./routes/profile.routes');
 
 const app = express();
 
@@ -20,9 +24,13 @@ app.use(cors());
 
 // add your routes here
 
-app.use('/api', authRoutes);
+
+app.use('/search', searchRoutes);
+
 app.use('/api', userRoutes);
 app.use('/recipe', recipeRoutes);
+app.use('/profile', profileRoutes);
+
 
 // global error handling login
 app.use((error, req, res, next) => {
@@ -37,6 +45,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
+
   .connect(dbConfig.db, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -48,3 +57,4 @@ mongoose
   .catch(err => {
     console.log(err);
   });
+

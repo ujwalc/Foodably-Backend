@@ -17,9 +17,11 @@ const recipeSchema = new Schema(
       required: true
     },
     author: {
-      name: String
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     },
     videoURL: String,
+    previewURL: String,
     isVeg: {
       type: Boolean,
       default: false
@@ -34,6 +36,7 @@ const recipeSchema = new Schema(
       default: new Schema()
     },
     category: String,
+    // In minutes
     preparationTime: Number,
     cuisine: String,
     /* type of dish */
