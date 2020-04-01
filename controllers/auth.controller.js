@@ -81,11 +81,19 @@ exports.login = (req, res, next) => {
 
 exports.validateEmail = (req, res, next) => {
     const email = req.params.email;
-    userSchema.find({ email: email }, (error, result) => {
-        if (error) {
-            return response.status(500).send(er);
+    userSchema.findOne({ email: email }).then(user => {
+        if (!user) {
+            return res.json({
+                emailNotTaken: true
+            });
+        } else {
+            res.json({
+                emailNotTaken: false
+            })
         }
-        console.log(result);
-        res.send(result);
+    }).catch(error => {
+        res.json({
+            emailNotTaken: true
+        })
     });
 };

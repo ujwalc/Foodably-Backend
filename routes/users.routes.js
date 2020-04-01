@@ -8,5 +8,8 @@ router.get('/', usersController.getUsers);
 router.get('/user-profile/:id', usersController.getUser);
 router.put('/update-user/:id', usersController.updateUser);
 router.delete('/delete-user/:id', usersController.deleteUser);
+router.post('/req-reset-password', usersController.ResetPassword);
+router.post('/new-password', usersController.NewPassword);
+router.post('/valid-password-token', usersController.ValidPasswordToken);
 
 module.exports = router;
