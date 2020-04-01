@@ -40,6 +40,9 @@ const advSearchSchema = new Schema({
     cuisine: {
         type: String
     },
+    image: {
+        type: String
+    },
     dishType: {
         type: String
     },
