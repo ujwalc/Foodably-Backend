@@ -10,6 +10,7 @@ const authRoutes = require('./routes/auth.routes');
 const searchRoutes = require('./routes/search.routes');
 
 const userRoutes = require('./routes/users.routes');
+const cookingRoutes = require('./routes/cookingList')
 const profileRoutes = require('./routes/profile.routes');
 
 const app = express();
@@ -29,6 +30,7 @@ app.use('/search', searchRoutes);
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/recipe', recipeRoutes);
+app.use('/cookinglist', cookingRoutes)
 app.use('/profile', profileRoutes);
 
 
