@@ -1,3 +1,5 @@
+//author: Raviteja Kase
+//ID: B00823644
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -5,6 +7,8 @@ const { check, validationResult } = require('express-validator');
 
 const userSchema = require('../models/user');
 
+
+//Registration functionality
 exports.signup = (req, res, next) => {
     const errors = validationResult(req);
     console.log(req.body);
@@ -35,6 +39,7 @@ exports.signup = (req, res, next) => {
     }
 };
 
+//Login Functionality
 exports.login = (req, res, next) => {
     let getUser;
 
@@ -79,6 +84,7 @@ exports.login = (req, res, next) => {
         });
 };
 
+//Validating Email, if its registered or not
 exports.validateEmail = (req, res, next) => {
     const email = req.params.email;
     userSchema.findOne({ email: email }).then(user => {

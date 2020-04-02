@@ -1,3 +1,5 @@
+//author: Raviteja Kase
+//ID: B00823644
 const userSchema = require('../models/user');
 const utils = require('../utils/error.handling');
 const bcrypt = require('bcryptjs');
@@ -5,6 +7,8 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const passwordResetToken = require('../models/resettoken');
 
+
+//Get all registered users
 exports.getUsers = (req, res, next) => {
     userSchema
         .find()
@@ -17,6 +21,7 @@ exports.getUsers = (req, res, next) => {
         });
 };
 
+//Get User by ID
 exports.getUser = (req, res, next) => {
     userSchema
         .findById(req.params.id)
@@ -31,6 +36,8 @@ exports.getUser = (req, res, next) => {
         });
 };
 
+//Updateb User by passing Id and the request body
+
 exports.updateUser = (req, res, next) => {
     userSchema
         .findByIdAndUpdate(req.params.id, { $set: req.body })
@@ -43,6 +50,8 @@ exports.updateUser = (req, res, next) => {
             next(err);
         });
 };
+
+//Delete a user by Id
 
 exports.deleteUser = (req, res, next) => {
     userSchema
@@ -58,6 +67,8 @@ exports.deleteUser = (req, res, next) => {
             next(err);
         });
 };
+
+//Reset password functionality where a mail is generated with the reset link to the requested mail of the user
 exports.ResetPassword = (req, res) => {
     if (!req.body.email) {
         return res
@@ -113,6 +124,9 @@ exports.ResetPassword = (req, res) => {
 
 
 }
+
+
+//A password token is generated for each user request reset password and this will be genereted to the specific user 
 exports.ValidPasswordToken = (req, res) => {
     if (!req.body.resettoken) {
         return res
@@ -137,6 +151,7 @@ exports.ValidPasswordToken = (req, res) => {
 }
 
 
+//Set the new password for resetting
 exports.NewPassword = (req, res) => {
     passwordResetToken.findOne({ resettoken: req.body.resettoken }, function(err, userToken, next) {
         if (!userToken) {
@@ -179,6 +194,8 @@ exports.NewPassword = (req, res) => {
     })
 }
 
+
+//Update the Bio of the user 
 exports.UpdateBio = (req, res) => {
 
     userSchema
