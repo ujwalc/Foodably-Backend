@@ -12,4 +12,4 @@ const ingredientSchema = new Schema(
   { _id: false }
 );
 
-module.exports =  ingredientSchema
+module.exports = ingredientSchema;
