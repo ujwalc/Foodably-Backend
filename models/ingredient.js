@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+ const Schema = mongoose.Schema;
 
 /* ingredient step */
 
@@ -12,4 +12,4 @@ const ingredientSchema = new Schema(
   { _id: false }
 );
 
-module.exports = ingredientSchema;
+module.exports =  ingredientSchema
