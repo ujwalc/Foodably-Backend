@@ -70,3 +70,20 @@ exports.createRecipe = (req, res, next) => {
       next(err);
     });
 };
+
+exports.deleteRecipe = (req, res, next) => {
+  const recipeId = req.params.recipeId;
+  console.log(recipeId);
+
+  Recipe.findByIdAndRemove(recipeId)
+    .then(result => {
+      console.log(result);
+      res.status(200).json({
+        message: 'Recipe deleted'
+      });
+    })
+    .catch(err => {
+      utils.handleError(err);
+      next(err);
+    });
+};
