@@ -9,5 +9,6 @@ router.get('/:recipeId', recipesController.getRecipe);
 router.post('/', recipesController.createRecipe);
 router.delete('/:recipeId', recipesController.deleteRecipe);
 router.post('/subscribe/:subscriberId/:subscriberdTo', recipesController.subscribeRecipe);
+router.post('/unsubscribe/:subscriberId/:subscriberdTo', recipesController.unsubsctibe);
 
 module.exports = router;

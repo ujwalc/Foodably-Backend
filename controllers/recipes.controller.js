@@ -159,3 +159,29 @@ exports.subscribeRecipe = (req, res, next) => {
 
 
 }
+
+exports.unsubsctibe = (req, res, next) => {
+    const subscriberId = req.params.subscriberId;
+    const subscriberdTo = req.params.subscriberdTo;
+    userSchema
+        .findById(subscriberId)
+        .then(user => {
+            let email = user.email;
+            userSchema.updateOne({ "_id": ObjectId(subscriberdTo) }, {
+                $pull: {
+                    subscribers: email
+                }
+            }, (error, result1) => {
+                if (error) {
+                    return response.status(500).send(error);
+                }
+                res.send(result1);
+
+            });
+        })
+        .catch(err => {
+            utils.handleError(err);
+            next(err);
+        });
+
+}

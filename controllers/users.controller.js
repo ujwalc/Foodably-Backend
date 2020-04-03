@@ -214,7 +214,7 @@ exports.subscribersList = (req, res, next) => {
             for (var i = 0; i < user.subscribers.length; i++) {
                 console.log(user.subscribers[i]);
             }
-            res.status(200).send(user);
+            res.status(200).send(user.subscribers);
         }
     )
 }
