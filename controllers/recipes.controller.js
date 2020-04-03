@@ -3,6 +3,26 @@ const { validationResult } = require('express-validator');
 const Recipe = require('../models/recipe');
 const utils = require('../utils/error.handling');
 
+exports.getRecipes = (req, res, next) => {
+  Recipe.find({}, ['id', 'title', 'previewURL', 'preparationTime'])
+    .populate({ path: 'author', select: 'name -_id' })
+    .exec()
+    .then(recipes => {
+      if (!recipes) {
+        const error = new Error('Could not find any recipes.');
+        error.statusCode = 404;
+        throw error;
+      }
+      res.status(200).json({
+        data: recipes
+      });
+    })
+    .catch(err => {
+      utils.handleError(err);
+      next(err);
+    });
+};
+
 exports.getRecipe = (req, res, next) => {
   const recipeId = req.params.recipeId;
   Recipe.findById(recipeId)
