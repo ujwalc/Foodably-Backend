@@ -4,9 +4,19 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
     comment:String,
-    userId:String,
-    userName:String,
-    recipeId: String,
+    // userId:{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    recipeId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe'
+    },
+    like: Number
 }, { timestamps: true });
 
 commentSchema.plugin(meanieMongoose);
