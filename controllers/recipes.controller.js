@@ -26,7 +26,7 @@ exports.getRecipes = (req, res, next) => {
 exports.getRecipe = (req, res, next) => {
   const recipeId = req.params.recipeId;
   Recipe.findById(recipeId)
-    .populate({ path: 'author', select: 'name -_id' })
+    .populate({ path: 'author', select: 'name id' })
     .exec()
     .then(recipe => {
       if (!recipe) {
@@ -56,7 +56,7 @@ exports.createRecipe = (req, res, next) => {
   const recipe = new Recipe({
     title: req.body.title,
     description: req.body.description,
-    author: req.body.authorId,
+    author: req.userId,
     videoURL: req.body.videoURL,
     previewURL: req.body.previewURL,
     isVeg: req.body.isVeg,

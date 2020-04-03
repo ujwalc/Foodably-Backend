@@ -44,7 +44,6 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-
   .connect(dbConfig.db, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
