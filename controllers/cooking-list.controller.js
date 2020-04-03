@@ -2,7 +2,7 @@ const CookingList = require('../models/cooking-list');
 const utils = require('../utils/error.handling');
 
 exports.getUserShoppingList = (req, res, next) => {
-  CookingList.findOne({ user: req.userId })
+  CookingList.findOne({ user: req.userId }).sort({time: -1})
     .then(cookingList => {
       if (!cookingList) {
         const error = new Error('Could not find any shopping list items.');
@@ -20,11 +20,12 @@ exports.getUserShoppingList = (req, res, next) => {
 };
 
 exports.createShoppingList = (req, res, next) => {
+  const dateNow= new Date()
   const cookingList = new CookingList({
-    user: req.userId,
+    user: req.params.userId,
+    time: dateNow.toString(),
     shoppingList: req.body.shoppingList
   });
-
   cookingList
     .save()
     .then(result => {
