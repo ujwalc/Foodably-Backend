@@ -10,6 +10,7 @@ const cookingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  time: String,
   shoppingList: [ingredient]
 });
 
