@@ -19,7 +19,12 @@ let userSchema = new Schema(
       type: String
     },
     bio: {
-      type: String
+        type: String
+    },
+    subscribers: {
+        "type": [
+            "String"
+        ]
     }
   },
   {
