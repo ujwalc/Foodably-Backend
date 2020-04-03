@@ -6,7 +6,7 @@ router.post('/comment',commentsController.postComment);
 
 // to get all the comments
 
-router.get('/allComments',commentsController.getComments);
+router.get('/allComments/:id',commentsController.getComments);
 
 //to update the comment and likes count
 router.put('/update',commentsController.updateComment);

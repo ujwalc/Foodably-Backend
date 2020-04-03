@@ -19,7 +19,8 @@ exports.postComment= (req,res,next)=>{
 };
 
 exports.getComments= (req,res,next)=>{
-    Comment.find()
+    var id= req.params.id;
+    Comment.find({recipeId:id})
     .populate({path : 'user' , select: '+name -_id'})
     .exec()
     .then(data=>{
