@@ -8,30 +8,30 @@ const nodemailer = require('nodemailer');
 
 
 exports.getRecipes = (req, res, next) => {
-  Recipe.find({}, ['id', 'title', 'previewURL', 'preparationTime'])
-    .populate({ path: 'author', select: 'name -_id' })
-    .exec()
-    .then(recipes => {
-      if (!recipes) {
-        const error = new Error('Could not find any recipes.');
-        error.statusCode = 404;
-        throw error;
-      }
-      res.status(200).json({
-        data: recipes
-      });
-    })
-    .catch(err => {
-      utils.handleError(err);
-      next(err);
-    });
+    Recipe.find({}, ['id', 'title', 'previewURL', 'preparationTime'])
+        .populate({ path: 'author', select: 'name -_id' })
+        .exec()
+        .then(recipes => {
+            if (!recipes) {
+                const error = new Error('Could not find any recipes.');
+                error.statusCode = 404;
+                throw error;
+            }
+            res.status(200).json({
+                data: recipes
+            });
+        })
+        .catch(err => {
+            utils.handleError(err);
+            next(err);
+        });
 };
 
 exports.getRecipe = (req, res, next) => {
 
     const recipeId = req.params.recipeId;
     Recipe.findById(recipeId)
-        .populate({ path: 'author', select: 'name  _id' })
+        .populate({ path: 'author', select: 'name  id' })
         //.populate({ path: 'author', select: '_id' })
         .exec()
         .then(recipe => {
@@ -53,28 +53,28 @@ exports.getRecipe = (req, res, next) => {
 
 
 exports.createRecipe = (req, res, next) => {
-  const errors = validationResult(req);
+    const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
-    const error = new Error('Validation failed, entered data is incorrect');
-    error.statusCode = 422;
-    throw error;
-  }
+    if (!errors.isEmpty()) {
+        const error = new Error('Validation failed, entered data is incorrect');
+        error.statusCode = 422;
+        throw error;
+    }
 
-  const recipe = new Recipe({
-    title: req.body.title,
-    description: req.body.description,
-    author: req.userId,
-    videoURL: req.body.videoURL,
-    previewURL: req.body.previewURL,
-    isVeg: req.body.isVeg,
-    ingredients: req.body.ingredients,
-    category: req.body.category,
-    preparationTime: req.body.preparationTime,
-    cuisine: req.body.cuisine,
-    type: req.body.type,
-    instruction: req.body.instruction
-  });
+    const recipe = new Recipe({
+        title: req.body.title,
+        description: req.body.description,
+        author: req.userId,
+        videoURL: req.body.videoURL,
+        previewURL: req.body.previewURL,
+        isVeg: req.body.isVeg,
+        ingredients: req.body.ingredients,
+        category: req.body.category,
+        preparationTime: req.body.preparationTime,
+        cuisine: req.body.cuisine,
+        type: req.body.type,
+        instruction: req.body.instruction
+    });
 
 
 

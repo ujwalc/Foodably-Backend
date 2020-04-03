@@ -37,7 +37,7 @@ exports.getUser = (req, res, next) => {
         });
 };
 
-//Updateb User by passing Id and the request body
+//Update User by passing Id and the request body
 
 exports.updateUser = (req, res, next) => {
     userSchema
