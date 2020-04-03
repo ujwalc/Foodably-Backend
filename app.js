@@ -11,7 +11,7 @@ const authRoutes = require('./routes/auth.routes');
 const searchRoutes = require('./routes/search.routes');
 
 const userRoutes = require('./routes/users.routes');
-const cookingRoutes = require('./routes/cookingList');
+const cookingRoutes = require('./routes/cooking-list.routes');
 const profileRoutes = require('./routes/profile.routes');
 const ratingRoutes = require('./routes/rating.routes');
 
@@ -33,7 +33,7 @@ app.use('/api', userRoutes);
 app.use('/recipe', recipeRoutes);
 app.use('/cookinglist', cookingRoutes);
 app.use('/profile', profileRoutes);
-app.use('/rating',ratingRoutes);
+app.use('/rating', ratingRoutes);
 
 // global error handling login
 app.use((error, req, res, next) => {
