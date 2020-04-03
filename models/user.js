@@ -17,6 +17,11 @@ let userSchema = new Schema({
     },
     bio: {
         type: String
+    },
+    subscribers: {
+        "type": [
+            "String"
+        ]
     }
 }, {
     collection: 'users'

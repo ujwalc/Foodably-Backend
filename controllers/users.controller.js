@@ -8,6 +8,7 @@ const nodemailer = require('nodemailer');
 const passwordResetToken = require('../models/resettoken');
 
 
+
 //Get all registered users
 exports.getUsers = (req, res, next) => {
     userSchema
@@ -98,7 +99,7 @@ exports.ResetPassword = (req, res) => {
                 var mailOptions = {
                     to: reqUser.email,
                     from: 'csci5709_group2@hotmail.com',
-                    subject: 'Node.js Password Reset',
+                    subject: 'Foodably Password Reset',
                     text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                         'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
                         'http://localhost:4200/response-reset-password/' + resettoken.resettoken + '\n\n' +
@@ -206,4 +207,14 @@ exports.UpdateBio = (req, res) => {
             utils.handleError(err);
             next(err);
         });
+}
+exports.subscribersList = (req, res, next) => {
+    userSchema.findById(req.params.id).then(
+        user => {
+            for (var i = 0; i < user.subscribers.length; i++) {
+                console.log(user.subscribers[i]);
+            }
+            res.status(200).send(user);
+        }
+    )
 }
