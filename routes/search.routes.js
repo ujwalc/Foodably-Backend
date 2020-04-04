@@ -1,10 +1,12 @@
+//Author: Ujwal Vikas Chanda, uj225642@dal.ca
 const express = require('express')
 const { body } = require('express-validator');
 const advSearch = require('../models/search')
-const Recipe = require('../models/recipe')
-const User = require('../models/user')
+const Recipe = require('../models/recipe') //Recipe schema model
+const User = require('../models/user') // user schema
 const router = express.Router()
-const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer'); // Library for mailing
+// Mailing credentials
 let transport = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
     port: 2525,
@@ -16,7 +18,7 @@ let transport = nodemailer.createTransport({
 });
 
 
-
+//Support Form 
 router.get('/contact/:name/:mail/:body', async(req, res) => {
     try {
 
@@ -45,6 +47,7 @@ router.get('/contact/:name/:mail/:body', async(req, res) => {
 
 })
 
+// Get all recipes
 router.get('/', async(req, res) => {
     try {
 
@@ -57,6 +60,7 @@ router.get('/', async(req, res) => {
 
 })
 
+// Get author name with specific keyword
 router.get('/author/:searchID', async(req, res) => {
     try {
         const searchID = req.params.searchID
@@ -70,7 +74,7 @@ router.get('/author/:searchID', async(req, res) => {
 
 })
 
-
+// Get all recipes with specific keyword
 router.get('/:searchID', async(req, res) => {
     try {
         const searchID = req.params.searchID
@@ -102,6 +106,7 @@ router.get('/:searchID', async(req, res) => {
 
 })
 
+// Search with advance filters
 router.post('/advSearch/:searchID', async(req, res) => {
     try {
         const searchID = req.params.searchID
@@ -196,6 +201,7 @@ router.post('/advSearch/:searchID', async(req, res) => {
 
 })
 
+// getting results in sorted order
 router.get('/desc/:searchID/:sortID', async(req, res) => {
     try {
         const searchID = req.params.searchID
@@ -228,6 +234,8 @@ router.get('/desc/:searchID/:sortID', async(req, res) => {
     }
 
 })
+
+// getting result in descending order
 router.get('/asc/:searchID/:sortID', async(req, res) => {
     try {
         const searchID = req.params.searchID
@@ -261,6 +269,7 @@ router.get('/asc/:searchID/:sortID', async(req, res) => {
 
 })
 
+//posting recipe 
 router.post('/submit', async(req, res) => {
     try {
         const id = req.body.recipeId

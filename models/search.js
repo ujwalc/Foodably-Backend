@@ -1,7 +1,8 @@
+//Author: Ujwal Vikas Chanda, uj225642@dal.ca
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
+//Recipe Schema
 const advSearchSchema = new Schema({
     recipeId: {
         type: String,
