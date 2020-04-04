@@ -1,3 +1,4 @@
+//@author : SNEHA JAYAVARDHINI
 const mongoose = require('mongoose');
 const meanieMongoose = require('meanie-mongoose-to-json');
 const Schema = mongoose.Schema;
