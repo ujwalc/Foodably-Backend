@@ -1,6 +1,8 @@
+//@author : SNEHA JAYAVARDHINI
 const Comment = require('../models/userComments');
 const mongoose=require('mongoose');
 
+// stores the comment in database given by user
 exports.postComment= (req,res,next)=>{
     const user=new Comment({
         comment: req.body.comment,
@@ -8,8 +10,6 @@ exports.postComment= (req,res,next)=>{
         recipeId:req.body.recipeId,
         like:req.body.like
     });
-    // console.log(req.body);
-
     user.save().then(result=>{
         res.status(201).json({
             message: result
@@ -18,6 +18,7 @@ exports.postComment= (req,res,next)=>{
     .catch(err=>console.log(err));
 };
 
+//gets the comments from database
 exports.getComments= (req,res,next)=>{
     var id= req.params.id;
     Comment.find({recipeId:id})
@@ -35,6 +36,7 @@ exports.getComments= (req,res,next)=>{
     });
 };
 
+// updates the user comment
 exports.updateComment=(req,res,next)=>{
     
     var id= req.body.id;   
@@ -48,6 +50,7 @@ exports.updateComment=(req,res,next)=>{
     });
 };
 
+//deletes the user comment from the database
 exports.deleteComment=(req,res,next)=>{
     var id= req.params.id;
     console.log(mongoose.Types.ObjectId(id));   
