@@ -1,6 +1,8 @@
+//@author : SNEHA JAYAVARDHINI
 const Rating = require('../models/rating');
 const mongoose = require('mongoose');
 
+// posts the rating given by user
 exports.postRate = (req, res, next) => {
   const user = new Rating({
     rate: req.body.rate,
@@ -21,6 +23,7 @@ exports.postRate = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+//gets the star rating given by the user
 exports.getRate = (req, res, next) => {
   var id = req.params.id;
   Rating.findById(id)
@@ -36,7 +39,7 @@ exports.getRate = (req, res, next) => {
       });
     });
 };
-
+//updates the star rating
 exports.updateRate = (req, res, next) => {
   var id = req.body.id;
   Rating.updateOne(
