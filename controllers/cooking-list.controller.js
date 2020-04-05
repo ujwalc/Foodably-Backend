@@ -1,6 +1,8 @@
 const CookingList = require('../models/cooking-list');
 const utils = require('../utils/error.handling');
 
+//This getUserShoppingList retreives users recent shopping list record
+
 exports.getUserShoppingList = (req, res, next) => {
   CookingList.findOne({ user: req.userId }).sort({time: -1})
     .then(cookingList => {
@@ -18,6 +20,9 @@ exports.getUserShoppingList = (req, res, next) => {
       next(err);
     });
 };
+
+
+// When user clicks on export ingredients a shopping list is created with time and userid
 
 exports.createShoppingList = (req, res, next) => {
   const dateNow= new Date()
