@@ -5,19 +5,11 @@ const CookingList = require('../models/cooking-list');
 
 const router = express.Router();
 
+//Post and Get request routes to create and fetch ingredients as shopping list
+
 router.post('/:userId', cookingListController.createShoppingList);
 router.get('/', auth, cookingListController.getUserShoppingList);
-//  router.post('/:id', async(req, res) => {
-//     try {
-//         const searchID = req.params.id
-//         console.log(searchID)
-//        // res.json(search1);
 
-//     } catch (err) {
-//        // res.json({ message: err });
-//     }
-
-// })
 
 
 module.exports = router;
